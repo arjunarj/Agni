@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "924722694431",
+    "project_id": "connect-81717",
+    "storage_bucket": "connect-81717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924722694431:android:b1f9df953f37353575082a",
+        "android_client_info": {
+          "package_name": "com.example.agni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924722694431-aeplg3gvegtlrcdfjfibhfdh3g7o4r2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGxBmp5FHZ_huGlVmsuNx0kyhSQCCjQ7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924722694431-aeplg3gvegtlrcdfjfibhfdh3g7o4r2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
