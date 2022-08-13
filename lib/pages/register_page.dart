@@ -18,9 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _confirmpwController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-  final _rollNoController = TextEditingController();
-  final _deptController = TextEditingController();
-  final _orgController = TextEditingController();
+  final _userNameController = TextEditingController();
 
   @override
   void dispose() {
@@ -29,9 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
     _confirmpwController.dispose();
     _firstNameController.dispose();
     _lastNameController.dispose();
-    _rollNoController.dispose();
-    _deptController.dispose();
-    _orgController.dispose();
+    _userNameController.dispose();
     super.dispose();
   }
 
@@ -53,21 +49,17 @@ class _RegisterPageState extends State<RegisterPage> {
       addUserDetails(
         _firstNameController.text.trim(),
         _lastNameController.text.trim(),
-        _rollNoController.text.trim(),
-        _deptController.text.trim(),
-        _orgController.text.trim(),
+        _userNameController.text.trim(),
       );
     }
   }
 
-  Future addUserDetails(String firstName, String lastName, String rollno,
-      String dept, String org) async {
+  Future addUserDetails(
+      String firstName, String lastName, String userName) async {
     await FirebaseFirestore.instance.collection('users').add({
-      'first name': firstName,
-      'last name': lastName,
-      'roll no': rollno,
-      'department': dept,
-      'institution': org,
+      'first_name': firstName,
+      'last_name': lastName,
+      'user_name': userName,
     });
   }
 
@@ -130,67 +122,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ],
             ),
-
-            // rollno
-            SizedBox(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: TextField(
-                  controller: _rollNoController,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'Roll No.',
-                      fillColor: Colors.white,
-                      filled: true),
-                ),
-              ),
-            ),
-            // dept
-            SizedBox(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: TextField(
-                  controller: _deptController,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'Department',
-                      fillColor: Colors.white,
-                      filled: true),
-                ),
-              ),
-            ),
-            // Institution
-            SizedBox(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: TextField(
-                  controller: _orgController,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'School/ College',
-                      fillColor: Colors.white,
-                      filled: true),
-                ),
-              ),
-            ),
             //e-mail
             SizedBox(
               child: Padding(
@@ -211,7 +142,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-
+            SizedBox(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: TextField(
+                  controller: _userNameController,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(12)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                          borderRadius: BorderRadius.circular(12)),
+                      hintText: 'Username',
+                      fillColor: Colors.white,
+                      filled: true),
+                ),
+              ),
+            ),
             //password
             SizedBox(
               child: Padding(
