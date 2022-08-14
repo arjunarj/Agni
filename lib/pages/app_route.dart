@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:agni/pages/home_page.dart';
+import 'package:agni/pages/notifications_page.dart';
 import 'package:agni/pages/profile_page.dart';
+import 'package:agni/pages/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_remix/flutter_remix.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class AppRoute extends StatefulWidget {
@@ -19,9 +23,9 @@ class _AppRouteState extends State<AppRoute> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   // ignore: prefer_final_fields
   List<Widget> _widgetOptions = <Widget>[
-    Text("Bruhh0"),
-    Text("Bruhh1"),
-    Text("Bruhh2"),
+    HomePage(),
+    SearchPage(),
+    NotificationsPage(),
     ProfilePage(),
   ];
 
@@ -47,19 +51,19 @@ class _AppRouteState extends State<AppRoute> {
           gap: 5,
           tabs: const [
             GButton(
-                icon: Icons.home_outlined,
+                icon: FlutterRemix.home_2_line,
                 text: 'Home',
                 textColor: Colors.white),
             GButton(
-              icon: Icons.event_available_outlined,
-              text: 'Events',
+              icon: FlutterRemix.search_2_line,
+              text: 'Search',
             ),
             GButton(
-              icon: Icons.calendar_month_outlined,
-              text: 'Calendar',
+              icon: FlutterRemix.notification_2_line,
+              text: '1',
             ),
             GButton(
-              icon: Icons.account_circle_outlined,
+              icon: FlutterRemix.user_3_line,
               text: 'Profile',
             ),
           ],

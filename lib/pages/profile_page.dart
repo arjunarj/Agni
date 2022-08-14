@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Text(
             'Profile',
             style: TextStyle(
-              color: Colors.indigo,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 32,
             ),
