@@ -25,6 +25,7 @@ class _AppRouteState extends State<AppRoute> {
   List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     SearchPage(),
+    //Text("Add"),
     NotificationsPage(),
     ProfilePage(),
   ];
@@ -58,13 +59,16 @@ class _AppRouteState extends State<AppRoute> {
               icon: FlutterRemix.search_2_line,
               text: 'Search',
             ),
+            // GButton(
+            //   icon: FlutterRemix.add_line,
+            // ),
             GButton(
               icon: FlutterRemix.notification_2_line,
               text: '1',
             ),
             GButton(
               icon: FlutterRemix.user_3_line,
-              text: 'Profile',
+              // text: 'Profile',
             ),
           ],
           selectedIndex: _selectedIndex,
