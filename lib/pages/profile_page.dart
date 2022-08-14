@@ -1,3 +1,4 @@
+import 'package:agni/pages/update_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,14 @@ class _ProfilePageState extends State<ProfilePage> {
               },
               color: Colors.indigo,
               child: Text('sign out'),
-            )
+            ),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => UpdateProfile()));
+                },
+                color: Colors.indigo,
+                child: Text('Update Profile'))
           ],
         ),
       )),

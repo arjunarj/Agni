@@ -25,9 +25,6 @@ class _RegisterPageState extends State<RegisterPage> {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmpwController.dispose();
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _userNameController.dispose();
     super.dispose();
   }
 
@@ -45,22 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim());
-      //add usesr details
-      addUserDetails(
-        _firstNameController.text.trim(),
-        _lastNameController.text.trim(),
-        _userNameController.text.trim(),
-      );
     }
-  }
-
-  Future addUserDetails(
-      String firstName, String lastName, String userName) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'first_name': firstName,
-      'last_name': lastName,
-      'user_name': userName,
-    });
   }
 
   @override
@@ -80,48 +62,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   fontSize: 30,
                 )),
             SizedBox(height: 30),
-            Row(
-              children: [
-                //firstname
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 5, 5),
-                    child: TextField(
-                      controller: _firstNameController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(12)),
-                          hintText: 'First Name',
-                          fillColor: Colors.white,
-                          filled: true),
-                    ),
-                  ),
-                ),
-                // lastname
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 5, 20, 5),
-                    child: TextField(
-                      controller: _lastNameController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(12)),
-                          hintText: 'Last Name',
-                          fillColor: Colors.white,
-                          filled: true),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             //e-mail
             SizedBox(
               child: Padding(
@@ -137,25 +77,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Colors.indigo),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'E-mail',
-                      fillColor: Colors.white,
-                      filled: true),
-                ),
-              ),
-            ),
-            SizedBox(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: TextField(
-                  controller: _userNameController,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'Username',
                       fillColor: Colors.white,
                       filled: true),
                 ),
