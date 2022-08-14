@@ -23,7 +23,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
 
   final user = FirebaseAuth.instance.currentUser!;
-  var _userDetails;
+  late Map<String, dynamic>? _userDetails;
   Future<void> _getUserDetails() async {
     FirebaseFirestore.instance
         .collection('users')
@@ -67,11 +67,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 children: [
                   Container(
                     decoration: BoxDecoration(color: Colors.grey[100]),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Text(_userDetails['user_name']),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: _userDetails?['user_name'] == null
+                            ? Text('None')
+                            : Text(_userDetails?['user_name']),
+                      ),
                     ),
                   ),
+                  SizedBox(width: 10.0),
                   MaterialButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -84,13 +90,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(color: Colors.grey[100]),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Text(_userDetails['first_name']),
-                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: _userDetails?['first_name'] == null
+                        ? Text("None")
+                        : Text(_userDetails?['first_name']),
                   ),
+                  SizedBox(width: 10.0),
                   MaterialButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -105,11 +111,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 children: [
                   Container(
                     decoration: BoxDecoration(color: Colors.grey[100]),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Text(_userDetails['last_name']),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: _userDetails?['last_name'] == null
+                            ? Text('None')
+                            : Text(_userDetails?['last_name']),
+                      ),
                     ),
                   ),
+                  SizedBox(width: 10.0),
                   MaterialButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
