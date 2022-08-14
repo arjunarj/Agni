@@ -1,4 +1,7 @@
 import 'package:agni/pages/profile_page.dart';
+import 'package:agni/pages/update_firstname.dart';
+import 'package:agni/pages/update_lastname.dart';
+import 'package:agni/pages/update_username.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,17 +15,24 @@ class UpdateProfile extends StatefulWidget {
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
-  final user = FirebaseAuth.instance.currentUser!;
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _userNameController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getUserDetails();
+  }
 
-  Future addUserDetails(
-      String firstName, String lastName, String userName) async {
-    await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-      'first_name': firstName,
-      'last_name': lastName,
-      'user_name': userName,
+  final user = FirebaseAuth.instance.currentUser!;
+  var _userDetails;
+  Future<void> _getUserDetails() async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get()
+        .then((value) {
+      setState(() {
+        _userDetails = value.data();
+      });
     });
   }
 
@@ -49,80 +59,67 @@ class _UpdateProfileState extends State<UpdateProfile> {
       ),
       body: SafeArea(
           child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                //firstname
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 5, 5, 5),
-                    child: TextField(
-                      controller: _firstNameController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(12)),
-                          hintText: 'First Name',
-                          fillColor: Colors.white,
-                          filled: true),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(color: Colors.grey[100]),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Text(_userDetails['user_name']),
                     ),
                   ),
-                ),
-                // lastname
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 5, 20, 5),
-                    child: TextField(
-                      controller: _lastNameController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.indigo),
-                              borderRadius: BorderRadius.circular(12)),
-                          hintText: 'Last Name',
-                          fillColor: Colors.white,
-                          filled: true),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: TextField(
-                  controller: _userNameController,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'Username',
-                      fillColor: Colors.white,
-                      filled: true),
-                ),
+                  MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UpdateUserName()));
+                      },
+                      color: Colors.indigo,
+                      child: Text('Update UserName'))
+                ],
               ),
-            ),
-            MaterialButton(
-                onPressed: () => addUserDetails(
-                    _firstNameController.text.trim(),
-                    _lastNameController.text.trim(),
-                    _userNameController.text.trim()),
-                color: Colors.indigo,
-                child: Text("Update Profile Details")),
-          ],
-        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(color: Colors.grey[100]),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Text(_userDetails['first_name']),
+                    ),
+                  ),
+                  MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UpdateFirstName()));
+                      },
+                      color: Colors.indigo,
+                      child: Text('Update FirstName'))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(color: Colors.grey[100]),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Text(_userDetails['last_name']),
+                    ),
+                  ),
+                  MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UpdateLastName()));
+                      },
+                      color: Colors.indigo,
+                      child: Text('Update LastName'))
+                ],
+              )
+            ]),
       )),
     );
   }
