@@ -36,47 +36,51 @@ class _AppRouteState extends State<AppRoute> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GNav(
-          iconSize: 22,
-          color: Colors.black,
-          activeColor: Colors.white,
-          backgroundColor: Colors.white,
-          // tabMargin: EdgeInsets.symmetric(vertical: 3),
-          tabBackgroundGradient: Gradient.lerp(
-            LinearGradient(colors: [Colors.indigo, Colors.deepPurple]),
-            LinearGradient(colors: [Colors.indigo, Colors.deepPurple]),
-            45,
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          child: GNav(
+            padding: const EdgeInsets.all(16),
+            iconSize: 22,
+            color: Colors.black,
+            activeColor: Colors.white,
+            backgroundColor: Colors.white,
+            // tabMargin: EdgeInsets.symmetric(vertical: 3),
+            tabBackgroundGradient: Gradient.lerp(
+              LinearGradient(colors: [Colors.indigo, Colors.deepPurple]),
+              LinearGradient(colors: [Colors.indigo, Colors.deepPurple]),
+              45,
+            ),
+            gap: 5,
+            tabs: const [
+              GButton(
+                  icon: FlutterRemix.home_2_line,
+                  text: 'Home',
+                  textColor: Colors.white),
+              GButton(
+                icon: FlutterRemix.search_2_line,
+                text: 'Search',
+              ),
+              // GButton(
+              //   icon: FlutterRemix.add_line,
+              // ),
+              GButton(
+                icon: FlutterRemix.notification_2_line,
+                text: '0',
+              ),
+              GButton(
+                icon: FlutterRemix.user_3_line,
+                // text: 'Profile',
+              ),
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
           ),
-          gap: 5,
-          tabs: const [
-            GButton(
-                icon: FlutterRemix.home_2_line,
-                text: 'Home',
-                textColor: Colors.white),
-            GButton(
-              icon: FlutterRemix.search_2_line,
-              text: 'Search',
-            ),
-            // GButton(
-            //   icon: FlutterRemix.add_line,
-            // ),
-            GButton(
-              icon: FlutterRemix.notification_2_line,
-              text: '1',
-            ),
-            GButton(
-              icon: FlutterRemix.user_3_line,
-              // text: 'Profile',
-            ),
-          ],
-          selectedIndex: _selectedIndex,
-          onTabChange: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
         ),
       ),
     );

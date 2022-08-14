@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
             child: Card(
               clipBehavior: Clip.antiAlias,
-              elevation: 0,
+              elevation: 10,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14)),
               child: SizedBox(
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Idea",
+                                  "Web Crawler",
                                   style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w600,
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 SizedBox(height: 2),
                                 Text(
-                                  '#Category1 #Category2',
+                                  '#CyberSecurity #Networking',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'),
                                 SizedBox(height: 52),
                                 Text(
-                                  "Looking For: ....",
+                                  "Looking For: #IT #WhiteHat #Frontend #Python",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.indigo,

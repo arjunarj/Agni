@@ -27,6 +27,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
+      body: Center(child: Text('No notifications yet')),
     );
   }
 }

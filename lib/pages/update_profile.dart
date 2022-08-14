@@ -1,11 +1,9 @@
-import 'package:agni/pages/profile_page.dart';
 import 'package:agni/pages/update_firstname.dart';
 import 'package:agni/pages/update_lastname.dart';
 import 'package:agni/pages/update_username.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class UpdateProfile extends StatefulWidget {
   const UpdateProfile({super.key});
@@ -23,7 +21,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
 
   final user = FirebaseAuth.instance.currentUser!;
-  late Map<String, dynamic>? _userDetails;
+  Map<String, dynamic>? _userDetails;
   Future<void> _getUserDetails() async {
     FirebaseFirestore.instance
         .collection('users')
